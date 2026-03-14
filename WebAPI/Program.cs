@@ -140,11 +140,11 @@ try
         // B) Force a quick SQLite DB, overriding any other settings to ensure isolation.
         const string smokeConn = "Data Source=smoketest.db";
 
-        builder.Configuration["DatabaseSettings:DatabaseProvider"] = "sqlite";
+        builder.Configuration["DatabaseSettings:DatabaseProvider"] ="postgres";
         builder.Configuration["ConnectionStrings:DefaultConnection"] = smokeConn;
 
         // C) Persist in store so subsequent runs are consistent (only if store exists)
-        easySetupStore?.Save("DatabaseSettings:DatabaseProvider", "sqlite", isSensitive: false);
+        easySetupStore?.Save("DatabaseSettings:DatabaseProvider", "postgres", isSensitive: false);
         easySetupStore?.Save("ConnectionStrings:DefaultConnection", smokeConn, isSensitive: true);
 
         Log.Information("[SmokeTest] Overriding configuration for smoke test: URL=http://0.0.0.0:5000, DB=SQLite");
